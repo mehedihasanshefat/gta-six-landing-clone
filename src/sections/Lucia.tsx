@@ -21,7 +21,7 @@ const Lucia = () => {
         end: '80% center',
         scrub: 2
       }, y: -200, duration: 1, ease: 'power1.inOut'
-    }, '<')
+    })
   });
 
   return (

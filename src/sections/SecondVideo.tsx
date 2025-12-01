@@ -3,7 +3,7 @@ import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
 
 const SecondVideo = () => {
-  const videoRef = useRef();
+  const videoRef = useRef<HTMLVideoElement | null>(null);
 
   useGSAP(() => {
     gsap.set('.lucia', { marginTop: '-60vh', opacity: 0 });
@@ -20,8 +20,11 @@ const SecondVideo = () => {
 
     tl.to('.lucia', { opacity: 1, duration: 1, ease: 'power1.inOut' })
 
-    videoRef.current.onloadedmetadata = () => {
-      tl.to(videoRef.current, { currentTime: videoRef.current.duration, duration: 3, ease: 'power1.inOut' }, '<')
+    const video = videoRef.current;
+    if (video) {
+      video.onloadedmetadata = () => {
+        tl.to(video, { currentTime: video.duration, duration: 3, ease: 'power1.inOut' }, '<')
+      }
     }
   })
 

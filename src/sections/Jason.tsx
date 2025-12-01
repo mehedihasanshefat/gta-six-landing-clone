@@ -21,7 +21,7 @@ const Jason = () => {
         end: '80% center',
         scrub: 2
       }, y: -300, duration: 1, ease: 'power1.inOut'
-    }, '<')
+    })
   }) 
 
   return (

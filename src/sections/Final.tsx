@@ -3,7 +3,7 @@ import gsap from "gsap";
 import { useRef } from "react";
 
 const Final = () => {
-  const videoRef = useRef(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
 
   useGSAP(() => {
     gsap.set('.final-content', { opacity: 0 });
@@ -29,8 +29,11 @@ const Final = () => {
 
     tl.to('.final-content', { opacity: 1, duration: 1, scale: 1, ease: 'power1.inOut' });
 
-    videoRef.current.onloadedmetadata = () => {
-      tl.to(videoRef.current, { currentTime: videoRef.current.duration, duration: 3, ease: 'power1.inOut' }, '<');
+    const video = videoRef.current;
+    if (video) {
+      video.onloadedmetadata = () => {
+        tl.to(video, { currentTime: video.duration, duration: 3, ease: 'power1.inOut' }, '<');
+      }
     }
   });
 
